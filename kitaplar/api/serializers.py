@@ -4,6 +4,8 @@ from ..models import Kitap, Yorum
 
 
 class YorumSerializer(serializers.ModelSerializer):
+    yorum_sahibi = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Yorum
         exclude = ['kitap']
