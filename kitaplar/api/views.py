@@ -4,16 +4,19 @@ from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.generics import GenericAPIView
 from rest_framework import generics
 from ..models import Kitap, Yorum
+from kitaplar.api.permisions import IsAdminUserOrReadOnly
 
 
 class KitapListCreateAPIView(generics.ListCreateAPIView):
     queryset = Kitap.objects.all()
     serializer_class = Kitapserializer
+    permission_classes = [IsAdminUserOrReadOnly]
 
 
 class KitapDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Kitap.objects.all()
     serializer_class = Kitapserializer
+    permission_classes = [IsAdminUserOrReadOnly]
 
 
 class YorumCreateAPIView(generics.CreateAPIView):
