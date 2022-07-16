@@ -7,12 +7,14 @@ from rest_framework import generics
 from ..models import Kitap, Yorum
 from kitaplar.api.permissions import IsAdminUserOrReadOnly, IsYorumSahibiOrReadOnly
 from rest_framework.validators import ValidationError
+from kitaplar.api.paginations import LargeResultsSetPagination, StandardResultsSetPagination
 
 
 class KitapListCreateAPIView(generics.ListCreateAPIView):
     queryset = Kitap.objects.all()
     serializer_class = Kitapserializer
     permission_classes = [IsAdminUserOrReadOnly]
+    pagination_class = StandardResultsSetPagination
 
 
 class KitapDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
